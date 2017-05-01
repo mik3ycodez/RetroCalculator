@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Minecraft.ttf">
+            <string>Minecraft</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -32,21 +37,21 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="JfI-AO-u8H">
-                                <rect key="frame" x="10" y="28" width="300" height="75"/>
+                                <rect key="frame" x="10" y="32.5" width="300" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="MGg-ZR-oCF"/>
                                     <constraint firstAttribute="height" constant="75" id="u59-OM-BmG"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpanel" translatesAutoresizingMaskIntoConstraints="NO" id="U7b-OY-6fG">
-                                <rect key="frame" x="60" y="138" width="200" height="315"/>
+                                <rect key="frame" x="60" y="127.5" width="200" height="315"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="GyM-ev-FdM"/>
                                     <constraint firstAttribute="height" constant="315" id="X8v-1m-q5T"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HBM-CP-D3P">
-                                <rect key="frame" x="75" y="150" width="170" height="290"/>
+                                <rect key="frame" x="75" y="139.5" width="170" height="290"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ydi-LO-kJK">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="50"/>
@@ -195,10 +200,13 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGK-HO-dwH">
-                                <rect key="frame" x="30" y="50" width="261" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGK-HO-dwH">
+                                <rect key="frame" x="30" y="55" width="261" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fxh-1l-Dbg"/>
+                                    <constraint firstAttribute="width" constant="261" id="mUc-TH-5ud"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Minecraft" family="Minecraft" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -207,6 +215,8 @@
                         <constraints>
                             <constraint firstItem="EBZ-UO-dIO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0ss-p9-IFg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WPV-Je-tjN" secondAttribute="bottom" id="4S6-AA-8zi"/>
+                            <constraint firstItem="NGK-HO-dwH" firstAttribute="centerX" secondItem="JfI-AO-u8H" secondAttribute="centerX" id="6lm-9f-9FD"/>
+                            <constraint firstItem="U7b-OY-6fG" firstAttribute="top" secondItem="JfI-AO-u8H" secondAttribute="bottom" constant="20" id="Am3-rG-c4S"/>
                             <constraint firstItem="HBM-CP-D3P" firstAttribute="centerX" secondItem="U7b-OY-6fG" secondAttribute="centerX" id="CYb-em-zh9"/>
                             <constraint firstItem="U7b-OY-6fG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CwG-5S-esB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EBZ-UO-dIO" secondAttribute="bottom" id="GKq-vz-hGZ"/>
@@ -214,8 +224,8 @@
                             <constraint firstItem="EBZ-UO-dIO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="XmG-DB-cph"/>
                             <constraint firstItem="EBZ-UO-dIO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="bf9-tu-HTi"/>
                             <constraint firstItem="HBM-CP-D3P" firstAttribute="centerY" secondItem="U7b-OY-6fG" secondAttribute="centerY" id="eJI-LX-aAQ"/>
-                            <constraint firstItem="JfI-AO-u8H" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="q8Z-hW-b8a"/>
-                            <constraint firstItem="U7b-OY-6fG" firstAttribute="top" secondItem="JfI-AO-u8H" secondAttribute="bottom" constant="35" id="uTL-l1-wBF"/>
+                            <constraint firstItem="U7b-OY-6fG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="45" id="i1T-h4-kyO"/>
+                            <constraint firstItem="NGK-HO-dwH" firstAttribute="centerY" secondItem="JfI-AO-u8H" secondAttribute="centerY" id="mdg-7Y-foP"/>
                             <constraint firstItem="JfI-AO-u8H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z17-Qv-9zR"/>
                             <constraint firstAttribute="trailing" secondItem="WPV-Je-tjN" secondAttribute="trailing" constant="-2" id="zNQ-3C-t2X"/>
                         </constraints>
