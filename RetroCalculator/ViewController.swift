@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let path = Bundle.main.path(forResource: "btn", ofType: "wave")
+        let path = Bundle.main.path(forResource: "btn", ofType: "wav")
+        //let soundURL = URL(fileURLWithPath: path!)
         let soundURL = URL(fileURLWithPath: path!)
         
         do {
@@ -27,15 +28,15 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func numberPressed(sender: UIButton) {
+    @IBAction func numberPressed(_ sender: UIButton) {
+        playSound()
+    }
+    
+    func playSound() {
         if btnSound.isPlaying {
             btnSound.stop()
         }
         btnSound.play()
-    }
-    
-    func playSound() {
-        
     }
     
     
