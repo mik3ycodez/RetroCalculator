@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		55654A611EB6C17C001ED1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55654A601EB6C17C001ED1CB /* AppDelegate.swift */; };
-		55654A631EB6C17C001ED1CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55654A621EB6C17C001ED1CB /* ViewController.swift */; };
+		55654A631EB6C17C001ED1CB /* CalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55654A621EB6C17C001ED1CB /* CalculatorVC.swift */; };
 		55654A661EB6C17C001ED1CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55654A641EB6C17C001ED1CB /* Main.storyboard */; };
 		55654A681EB6C17C001ED1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55654A671EB6C17C001ED1CB /* Assets.xcassets */; };
 		55654A6B1EB6C17C001ED1CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55654A691EB6C17C001ED1CB /* LaunchScreen.storyboard */; };
 		55654A731EB6F64B001ED1CB /* retro-graphics in Resources */ = {isa = PBXBuildFile; fileRef = 55654A721EB6F64B001ED1CB /* retro-graphics */; };
 		55654A751EB6F7F4001ED1CB /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55654A741EB6F7F4001ED1CB /* Minecraft.ttf */; };
 		55654A771EB6F94A001ED1CB /* btn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55654A761EB6F94A001ED1CB /* btn.wav */; };
+		55FB1E231EB83CBD004EE61A /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB1E221EB83CBD004EE61A /* LaunchScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		55654A5D1EB6C17C001ED1CB /* RetroCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RetroCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55654A601EB6C17C001ED1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55654A621EB6C17C001ED1CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55654A621EB6C17C001ED1CB /* CalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVC.swift; sourceTree = "<group>"; };
 		55654A651EB6C17C001ED1CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55654A671EB6C17C001ED1CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55654A6A1EB6C17C001ED1CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		55654A721EB6F64B001ED1CB /* retro-graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "retro-graphics"; sourceTree = "<group>"; };
 		55654A741EB6F7F4001ED1CB /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Minecraft.ttf; path = "retro-graphics/Minecraft.ttf"; sourceTree = "<group>"; };
 		55654A761EB6F94A001ED1CB /* btn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btn.wav; sourceTree = "<group>"; };
+		55FB1E221EB83CBD004EE61A /* LaunchScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +66,12 @@
 				55654A761EB6F94A001ED1CB /* btn.wav */,
 				55654A721EB6F64B001ED1CB /* retro-graphics */,
 				55654A601EB6C17C001ED1CB /* AppDelegate.swift */,
-				55654A621EB6C17C001ED1CB /* ViewController.swift */,
+				55654A621EB6C17C001ED1CB /* CalculatorVC.swift */,
 				55654A641EB6C17C001ED1CB /* Main.storyboard */,
 				55654A671EB6C17C001ED1CB /* Assets.xcassets */,
 				55654A691EB6C17C001ED1CB /* LaunchScreen.storyboard */,
 				55654A6C1EB6C17C001ED1CB /* Info.plist */,
+				55FB1E221EB83CBD004EE61A /* LaunchScreenVC.swift */,
 			);
 			path = RetroCalculator;
 			sourceTree = "<group>";
@@ -149,8 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55654A631EB6C17C001ED1CB /* ViewController.swift in Sources */,
+				55654A631EB6C17C001ED1CB /* CalculatorVC.swift in Sources */,
 				55654A611EB6C17C001ED1CB /* AppDelegate.swift in Sources */,
+				55FB1E231EB83CBD004EE61A /* LaunchScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
