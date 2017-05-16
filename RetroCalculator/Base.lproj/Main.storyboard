@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="6V7-RV-m6W">
-                                <rect key="frame" x="36" y="112" width="343" height="432.33333333333337"/>
+                                <rect key="frame" x="36" y="109" width="343" height="438.33333333333337"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Retro-Calc" translatesAutoresizingMaskIntoConstraints="NO" id="mzh-f9-S9P">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="55.333333333333343"/>
@@ -48,7 +48,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvc-4Q-VVg">
-                                        <rect key="frame" x="0.0" y="385.33333333333337" width="343" height="47.000000000000057"/>
+                                        <rect key="frame" x="0.0" y="385.33333333333337" width="343" height="53.000000000000057"/>
                                         <fontDescription key="fontDescription" name="Minecraft" family="Minecraft" pointSize="35"/>
                                         <state key="normal" title="Start Calculating">
                                             <color key="titleColor" red="0.042000522094913693" green="0.328105171319797" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

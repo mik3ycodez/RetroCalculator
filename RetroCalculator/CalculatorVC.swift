@@ -26,22 +26,6 @@ class CalculatorVC: UIViewController {
     var arrayNonNullValue = 0
     var arraysAreEven = false
     
-    
-    enum Operation: String {
-        case Divide = "/"
-        case Multiply = "*"
-        case Subtract = "-"
-        case Add = "+"
-        case Empty = "Empty"
-    }
-    
-
-    var currentOperation = Operation.Empty
-    var leftValStr = ""
-    var rightValStr = ""
-    var result = ""
-    var runningNumber = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,44 +42,6 @@ class CalculatorVC: UIViewController {
         outputLbl.text = "0"
     }
     
-    @IBAction func numberPressed(_ sender: UIButton) {
-        playSound()
-        
-        runningNumber += "\(sender.tag)"
-        outputLbl.text = runningNumber
-        
-    }
-    
-    @IBAction func onDividePressed(_ sender: UIButton) {
-        processOperation(operation: .Divide)
-    }
-    
-    @IBAction func onMultiplyPressed(_ sender: UIButton) {
-        processOperation(operation: .Multiply)
-    }
-    
-    @IBAction func onSubtractPressed(_ sender: UIButton) {
-        processOperation(operation: .Subtract)
-    }
-    
-    @IBAction func onAddPressed(_ sender: UIButton) {
-        processOperation(operation: .Add)
-    }
-    
-    @IBAction func onEqualPressed(_ sender: UIButton) {
-        processOperation(operation: currentOperation)
-    }
-    
-    @IBAction func onClearPressed(_ sender: UIButton) {
-        playSound()
-        currentOperation = Operation.Empty
-        leftValStr = ""
-        rightValStr = ""
-        result = ""
-        runningNumber = ""
-        outputLbl.text = "0.0"
-    }
-    
     func playSound() {
         if btnSound.isPlaying {
             btnSound.stop()
@@ -103,37 +49,52 @@ class CalculatorVC: UIViewController {
         btnSound.play()
     }
     
-    func processOperation(operation: Operation) {
+    @IBAction func onClearPressed(_ sender: UIButton) {
         playSound()
-        if currentOperation != Operation.Empty {
-            //A user selected an operator, but then selected another operator without first entering a number.
-            
-            if runningNumber != "" {
-                rightValStr = runningNumber
-                runningNumber = ""
-                
-                if currentOperation == Operation.Divide {
-                    result = "\(Double(leftValStr)! / Double(rightValStr)!)"
-                } else if currentOperation == Operation.Multiply {
-                    result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-                } else if currentOperation == Operation.Subtract {
-                    result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-                } else if currentOperation == Operation.Add {
-                    result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-                }
-                
-                leftValStr = result
-                outputLbl.text = result
-            }
-            currentOperation = operation
+        calcStringNumberEntries = []
+        calcStringOperatorsArray = []
+        calcNumbersArray = []
+        outputLbl.text = "0.0"
+        i = 0
+    }
+    
+    @IBAction func numberPressed(_ sender: UIButton) {
+        playSound()
+        
+        if equalsPressed {
+            calcStringNumberEntries[i] = "\(sender.tag)"
+            equalsPressed = false
         } else {
-            //This is the first time an operator has been pressed.
-            leftValStr = runningNumber
-            runningNumber = ""
-            currentOperation = operation
+            if i < calcStringNumberEntries.count {
+                calcStringNumberEntries[i] = "\(sender.tag)"
+            } else {
+                calcStringNumberEntries[i] = calcStringNumberEntries[i] + "\(sender.tag)"
+            }
+        }
+        outputLbl.text = calcStringNumberEntries[i]
+        
+    }
+    
+    @IBAction func operatorPressed(_ sender: UIButton) {
+        calculateArrayNonNil()
+        if !arraysAreEven {
+            calcStringOperatorsArray[i] = "\(sender.tag)"
+            i = i + 1
+            equalsPressed = false
         }
     }
     
+    @discardableResult func calculateArrayNonNil() -> Bool {
+        arrayNonNullValue = 0
+        var stringNumberHolder = 0
+        var stringOpeatorHolder = 0
+        
+        if i < calcStringNumberEntries.count { stringNumberHolder = calcStringNumberEntries.count }
+        if i < calcStringOperatorsArray.count { stringOpeatorHolder = calcStringOperatorsArray.count }
+        arrayNonNullValue = stringNumberHolder + stringOpeatorHolder
+        arraysAreEven = arrayNonNullValue % 2 == 0
+        return arraysAreEven
+    }
     
 }
 
@@ -568,6 +529,96 @@ class CalculatorVC: UIViewController {
  return decimalPlaces;
  }*/
  }
+ 
+ */
+
+
+/*
+ ***Original Code***
+ 
+ //    enum Operation: String {
+ //        case Divide = "/"
+ //        case Multiply = "*"
+ //        case Subtract = "-"
+ //        case Add = "+"
+ //        case Empty = "Empty"
+ //    }
+ 
+ 
+ //    var currentOperation = Operation.Empty
+ //    var leftValStr = ""
+ //    var rightValStr = ""
+ //    var result = ""
+ //    var runningNumber = ""
+ 
+ /*@IBAction func numberPressed(_ sender: UIButton) {
+ playSound()
+ 
+ runningNumber += "\(sender.tag)"
+ outputLbl.text = runningNumber
+ 
+ }
+ 
+ @IBAction func onDividePressed(_ sender: UIButton) {
+ processOperation(operation: .Divide)
+ }
+ 
+ @IBAction func onMultiplyPressed(_ sender: UIButton) {
+ processOperation(operation: .Multiply)
+ }
+ 
+ @IBAction func onSubtractPressed(_ sender: UIButton) {
+ processOperation(operation: .Subtract)
+ }
+ 
+ @IBAction func onAddPressed(_ sender: UIButton) {
+ processOperation(operation: .Add)
+ }
+ 
+ @IBAction func onEqualPressed(_ sender: UIButton) {
+ processOperation(operation: currentOperation)
+ }
+ 
+ @IBAction func onClearPressed(_ sender: UIButton) {
+ playSound()
+ currentOperation = Operation.Empty
+ leftValStr = ""
+ rightValStr = ""
+ result = ""
+ runningNumber = ""
+ outputLbl.text = "0.0"
+ }*/
+ 
+ /*func processOperation(operation: Operation) {
+ playSound()
+ if currentOperation != Operation.Empty {
+ //A user selected an operator, but then selected another operator without first entering a number.
+ 
+ if runningNumber != "" {
+ rightValStr = runningNumber
+ runningNumber = ""
+ 
+ if currentOperation == Operation.Divide {
+ result = "\(Double(leftValStr)! / Double(rightValStr)!)"
+ } else if currentOperation == Operation.Multiply {
+ result = "\(Double(leftValStr)! * Double(rightValStr)!)"
+ } else if currentOperation == Operation.Subtract {
+ result = "\(Double(leftValStr)! - Double(rightValStr)!)"
+ } else if currentOperation == Operation.Add {
+ result = "\(Double(leftValStr)! + Double(rightValStr)!)"
+ }
+ 
+ leftValStr = result
+ outputLbl.text = result
+ }
+ currentOperation = operation
+ } else {
+ //This is the first time an operator has been pressed.
+ leftValStr = runningNumber
+ runningNumber = ""
+ currentOperation = operation
+ }
+ }*/
  
  */
 
