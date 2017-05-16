@@ -164,9 +164,9 @@
                                                     <constraint firstAttribute="width" constant="50" id="F8d-AX-gKl"/>
                                                     <constraint firstAttribute="height" constant="50" id="p9p-Pa-7AI"/>
                                                 </constraints>
-                                                <state key="normal" image="divide"/>
+                                                <state key="normal" title="/" image="divide"/>
                                                 <connections>
-                                                    <action selector="onDividePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PH7-5b-0mo"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LsU-Ir-04j"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -213,9 +213,9 @@
                                                     <constraint firstAttribute="height" constant="50" id="0iH-bh-QCn"/>
                                                     <constraint firstAttribute="width" constant="50" id="Nh5-vn-MVF"/>
                                                 </constraints>
-                                                <state key="normal" image="multiply"/>
+                                                <state key="normal" title="*" image="multiply"/>
                                                 <connections>
-                                                    <action selector="onMultiplyPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vo5-Yl-KCe"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gCM-Il-vUS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -262,9 +262,9 @@
                                                     <constraint firstAttribute="width" constant="50" id="BsT-6u-MHK"/>
                                                     <constraint firstAttribute="height" constant="50" id="RUY-HK-L9K"/>
                                                 </constraints>
-                                                <state key="normal" image="subtract"/>
+                                                <state key="normal" title="-" image="subtract"/>
                                                 <connections>
-                                                    <action selector="onSubtractPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrp-20-OTo"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QwK-QW-ePZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -283,7 +283,7 @@
                                                     <action selector="numberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hhZ-dq-yqZ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a90-KQ-stb" userLabel="Zero">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a90-KQ-stb" userLabel="Decimal">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="dU4-f5-aRU"/>
@@ -291,7 +291,7 @@
                                                 </constraints>
                                                 <state key="normal" image="decimal"/>
                                                 <connections>
-                                                    <action selector="numberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WP8-S4-6qp"/>
+                                                    <action selector="decimalPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lS4-hq-0cO"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIw-3G-4cW" userLabel="Equal">
@@ -311,25 +311,15 @@
                                                     <constraint firstAttribute="width" constant="50" id="VEq-fr-cuR"/>
                                                     <constraint firstAttribute="height" constant="50" id="gRJ-69-5L1"/>
                                                 </constraints>
-                                                <state key="normal" image="add"/>
+                                                <state key="normal" title="+" image="add"/>
                                                 <connections>
-                                                    <action selector="onAddPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bd6-sV-qwd"/>
+                                                    <action selector="operatorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2rB-Ox-p8L"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGK-HO-dwH">
-                                <rect key="frame" x="77" y="140.33333333333334" width="261" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fxh-1l-Dbg"/>
-                                    <constraint firstAttribute="width" constant="261" id="mUc-TH-5ud"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Minecraft" family="Minecraft" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ye7-Dp-qtd" userLabel="Clear">
                                 <rect key="frame" x="145" y="265" width="125" height="50"/>
                                 <constraints>
@@ -341,6 +331,16 @@
                                     <action selector="onClearPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0V6-63-dMV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGK-HO-dwH">
+                                <rect key="frame" x="77" y="140.33333333333334" width="261" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fxh-1l-Dbg"/>
+                                    <constraint firstAttribute="width" constant="261" id="mUc-TH-5ud"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Minecraft" family="Minecraft" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

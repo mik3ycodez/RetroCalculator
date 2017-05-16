@@ -16,12 +16,14 @@ class CalculatorVC: UIViewController {
     
     //Storage Arrays
     var calcStringNumberEntries = [String]() //Stores user entries to allow for textView display
-    var calcStringOperatorsArray = [String]() //Stores operators to initialize math of ints
-    var calcNumbersArray = [Double]() //Stores the int value of the string array
+    var calcStringOperatorsArray = [String]() //Stores operators for math operation
+    var calcDoubleNumbersArray = [Double]() //Stores the double value of the string array
     
     //Variables
     var i = 0 //Array counter
-    var tempValue = 0.00 //Final calculation total after math is completed
+    var p = 0 //EqualsPressed Array Counter
+    var tempValue: Double? //Holding value in math calculation to be converted to finalResult
+    var finalResult = "" //Final calculation to be used in label
     var equalsPressed = false
     var arrayNonNullValue = 0
     var arraysAreEven = false
@@ -53,7 +55,7 @@ class CalculatorVC: UIViewController {
         playSound()
         calcStringNumberEntries = []
         calcStringOperatorsArray = []
-        calcNumbersArray = []
+        calcDoubleNumbersArray = []
         outputLbl.text = "0.0"
         i = 0
     }
@@ -78,7 +80,8 @@ class CalculatorVC: UIViewController {
     @IBAction func operatorPressed(_ sender: UIButton) {
         calculateArrayNonNil()
         if !arraysAreEven {
-            calcStringOperatorsArray[i] = "\(sender.tag)"
+            //add case to pull tag
+            calcStringOperatorsArray[i] = "\(String(describing: sender.title(for: .normal)))"
             i = i + 1
             equalsPressed = false
         }
@@ -100,6 +103,65 @@ class CalculatorVC: UIViewController {
         outputLbl.text = calcStringNumberEntries[i]
     }
     
+    @IBAction func onEqualPressed(_ sender: UIButton) {
+        i = 0
+        p = 0
+        
+        //copy string numbers to double numbers
+        calcDoubleNumbersArray = calcStringNumberEntries.map{ NSString(string: $0).doubleValue }
+        
+        if calcDoubleNumbersArray.count >= 1 { tempValue = calcDoubleNumbersArray[0] }
+        
+        if tempValue != nil {
+            
+            for _ in calcStringOperatorsArray {
+                p = p + 1
+                if (p == calcStringOperatorsArray.count) {
+                    break
+                }
+                if calcStringOperatorsArray.count >= 1 {
+                    switch calcStringOperatorsArray[i] {
+                    case "/":
+                        if calcDoubleNumbersArray[p] == 0 {
+                            //Divid By Zero Message
+                            outputLbl.text = "Div by 0"
+                        } else {
+                            tempValue = tempValue! / calcDoubleNumbersArray[p]
+                            finalResult = String(format: "%.03", tempValue!)
+                            outputLbl.text = finalResult
+                        }
+                        break
+                    case "*":
+                        tempValue = tempValue! * calcDoubleNumbersArray[p]
+                        finalResult = String(format: "%.03", tempValue!)
+                        outputLbl.text = finalResult
+                        break
+                    case "-":
+                        tempValue = tempValue! - calcDoubleNumbersArray[p]
+                        finalResult = String(format: "%.03", tempValue!)
+                        outputLbl.text = finalResult
+                        break
+                    case "+":
+                        tempValue = tempValue! + calcDoubleNumbersArray[p]
+                        finalResult = String(format: "%.03", tempValue!)
+                        outputLbl.text = finalResult
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        equalsPressed = true
+        calcStringNumberEntries = []
+        calcStringOperatorsArray = []
+        calcDoubleNumbersArray = []
+        
+        i = 0
+        p = 0
+    }
+    
     @discardableResult func calculateArrayNonNil() -> Bool {
         arrayNonNullValue = 0
         var stringNumberHolder = 0
@@ -111,127 +173,6 @@ class CalculatorVC: UIViewController {
         arraysAreEven = arrayNonNullValue % 2 == 0
         return arraysAreEven
     }
-    
-//    mEqualsButton.setOnClickListener(new View.OnClickListener() {
-//    public void onClick(View v) {
-//    i = 0;
-//    System.out.println("Start writing string user entries.");
-//    for (int j=0; j<calcStringNumberEntries.length;j++) {
-//    if (calcStringNumberEntries[j] != null) {
-//    System.out.println(calcStringNumberEntries[j]);
-//    }
-//    }
-//    System.out.println("Finished writing string user entries.");
-//    
-//    
-//    System.out.println("Start writing string operators.");
-//    for (int k=0; k<calcStringOperatorsArray.length; k++) {
-//    if (calcStringOperatorsArray[k] != null) {
-//    System.out.println(calcStringOperatorsArray[k]);
-//    }
-//    }
-//    System.out.println("Finished writing string operators.");
-//    
-//    System.out.println("Start writing int number entries.");
-//    for (int n=0; n < calcNumbersArray.length; n++) {
-//    if (calcNumbersArray[n] != null) {
-//    System.out.println(calcNumbersArray[n]);
-//    }
-//    }
-//    System.out.println("Finished writing int number entries.");
-//    
-//    System.out.println("Start copying string numbers to int numbers.");
-//    for (int l = 0; l < calcStringNumberEntries.length; l++) {
-//    if (calcStringNumberEntries[l] != null) {
-//    calcNumbersArray[l] = Double.parseDouble(calcStringNumberEntries[l]);
-//    }
-//    }
-//    System.out.println("The arrays copied successfully.");
-//    
-//    System.out.println("Start writing int number entries.");
-//    for (int m=0; m < calcNumbersArray.length; m++) {
-//    if (calcNumbersArray[m] != null) {
-//    System.out.println(calcNumbersArray[m]);
-//    }
-//    }
-//    System.out.println("Finished writing int number entries.");
-//    
-//    
-//    System.out.println("Starting math computation.");
-//    if (calcNumbersArray[0] != null) {
-//    tempValue = calcNumbersArray[0];
-//    }
-//    System.out.println(tempValue);
-//    String finalResult;
-//    
-//    
-//    if (tempValue != null) {
-//    System.out.println("Starting for math statement.");
-//    for (i = 0; i < calcStringOperatorsArray.length; i++) {
-//    
-//    int p = i + 1;
-//    if (p == 100) {
-//    break;
-//    }
-//    
-//    if (calcStringOperatorsArray[i] != null) {
-//    switch (calcStringOperatorsArray[i]) {
-//    case "/":
-//    if (calcNumbersArray[p] == 0) {
-//    myTextView.setText(getString(R.string.divide_error_msg));
-//    } else {
-//    tempValue = tempValue / calcNumbersArray[p];
-//    finalResult = String.valueOf(df.format(tempValue));
-//    myTextView.setText(finalResult);
-//    System.out.println(finalResult);
-//    }
-//    break;
-//    case "*":
-//    tempValue = tempValue * calcNumbersArray[p];
-//    finalResult = String.valueOf(df.format(tempValue));
-//    myTextView.setText(finalResult);
-//    System.out.println(finalResult);
-//    break;
-//    case "-":
-//    tempValue = tempValue - calcNumbersArray[p];
-//    finalResult = String.valueOf(df.format(tempValue));
-//    myTextView.setText(finalResult);
-//    System.out.println(finalResult);
-//    break;
-//    case "+":
-//    tempValue = tempValue + calcNumbersArray[p];
-//    finalResult = String.valueOf(df.format(tempValue));
-//    myTextView.setText(finalResult);
-//    break;
-//    default:
-//    break;
-//    }
-//    }
-//    }
-//    System.out.println("Ending for math statement");
-//    }
-//    
-//    equalsPressed = true;
-//    if (calcStringNumberEntries[i] != null) {
-//    System.out.println(df.format(tempValue));
-//    }
-//    System.out.println("Finished math computation.");
-//    
-//    calcStringNumberEntries = null;
-//    calcStringNumberEntries = new String[100];
-//    calcStringOperatorsArray = null;
-//    calcStringOperatorsArray = new String[100];
-//    calcNumbersArray = null;
-//    calcNumbersArray = new Double[100];
-//    i = 0;
-//    if (calcStringNumberEntries != null) {
-//    calcStringNumberEntries[i] = String.valueOf(df.format(tempValue));
-//    System.out.println(calcStringNumberEntries[i]);
-//    }
-//    }
-//    });
-//}
-    
 }
 
 /*
