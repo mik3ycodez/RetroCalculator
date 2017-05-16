@@ -84,17 +84,153 @@ class CalculatorVC: UIViewController {
         }
     }
     
+    @IBAction func decimalPressed(_ sender: UIButton) {
+        //Boolean variable that checks index if it contains a decimal
+        //If false add "."
+        //If true ignore
+        
+        var testArrayElementForDecimal = ""
+        testArrayElementForDecimal = calcStringNumberEntries[i]
+        
+        if i < calcStringNumberEntries.count { calcStringNumberEntries[i] = "0." }
+        else if !testArrayElementForDecimal.contains(".") { calcStringNumberEntries[i] = "0." }
+        else if equalsPressed { calcStringNumberEntries[i] = "0." }
+        else { calcStringNumberEntries[i] = calcStringNumberEntries[i] + "." }
+        equalsPressed = false
+        outputLbl.text = calcStringNumberEntries[i]
+    }
+    
     @discardableResult func calculateArrayNonNil() -> Bool {
         arrayNonNullValue = 0
         var stringNumberHolder = 0
-        var stringOpeatorHolder = 0
+        var stringOperatorHolder = 0
         
-        if i < calcStringNumberEntries.count { stringNumberHolder = calcStringNumberEntries.count }
-        if i < calcStringOperatorsArray.count { stringOpeatorHolder = calcStringOperatorsArray.count }
-        arrayNonNullValue = stringNumberHolder + stringOpeatorHolder
+        stringNumberHolder = calcStringNumberEntries.count
+        stringOperatorHolder = calcStringOperatorsArray.count
+        arrayNonNullValue = stringNumberHolder + stringOperatorHolder
         arraysAreEven = arrayNonNullValue % 2 == 0
         return arraysAreEven
     }
+    
+//    mEqualsButton.setOnClickListener(new View.OnClickListener() {
+//    public void onClick(View v) {
+//    i = 0;
+//    System.out.println("Start writing string user entries.");
+//    for (int j=0; j<calcStringNumberEntries.length;j++) {
+//    if (calcStringNumberEntries[j] != null) {
+//    System.out.println(calcStringNumberEntries[j]);
+//    }
+//    }
+//    System.out.println("Finished writing string user entries.");
+//    
+//    
+//    System.out.println("Start writing string operators.");
+//    for (int k=0; k<calcStringOperatorsArray.length; k++) {
+//    if (calcStringOperatorsArray[k] != null) {
+//    System.out.println(calcStringOperatorsArray[k]);
+//    }
+//    }
+//    System.out.println("Finished writing string operators.");
+//    
+//    System.out.println("Start writing int number entries.");
+//    for (int n=0; n < calcNumbersArray.length; n++) {
+//    if (calcNumbersArray[n] != null) {
+//    System.out.println(calcNumbersArray[n]);
+//    }
+//    }
+//    System.out.println("Finished writing int number entries.");
+//    
+//    System.out.println("Start copying string numbers to int numbers.");
+//    for (int l = 0; l < calcStringNumberEntries.length; l++) {
+//    if (calcStringNumberEntries[l] != null) {
+//    calcNumbersArray[l] = Double.parseDouble(calcStringNumberEntries[l]);
+//    }
+//    }
+//    System.out.println("The arrays copied successfully.");
+//    
+//    System.out.println("Start writing int number entries.");
+//    for (int m=0; m < calcNumbersArray.length; m++) {
+//    if (calcNumbersArray[m] != null) {
+//    System.out.println(calcNumbersArray[m]);
+//    }
+//    }
+//    System.out.println("Finished writing int number entries.");
+//    
+//    
+//    System.out.println("Starting math computation.");
+//    if (calcNumbersArray[0] != null) {
+//    tempValue = calcNumbersArray[0];
+//    }
+//    System.out.println(tempValue);
+//    String finalResult;
+//    
+//    
+//    if (tempValue != null) {
+//    System.out.println("Starting for math statement.");
+//    for (i = 0; i < calcStringOperatorsArray.length; i++) {
+//    
+//    int p = i + 1;
+//    if (p == 100) {
+//    break;
+//    }
+//    
+//    if (calcStringOperatorsArray[i] != null) {
+//    switch (calcStringOperatorsArray[i]) {
+//    case "/":
+//    if (calcNumbersArray[p] == 0) {
+//    myTextView.setText(getString(R.string.divide_error_msg));
+//    } else {
+//    tempValue = tempValue / calcNumbersArray[p];
+//    finalResult = String.valueOf(df.format(tempValue));
+//    myTextView.setText(finalResult);
+//    System.out.println(finalResult);
+//    }
+//    break;
+//    case "*":
+//    tempValue = tempValue * calcNumbersArray[p];
+//    finalResult = String.valueOf(df.format(tempValue));
+//    myTextView.setText(finalResult);
+//    System.out.println(finalResult);
+//    break;
+//    case "-":
+//    tempValue = tempValue - calcNumbersArray[p];
+//    finalResult = String.valueOf(df.format(tempValue));
+//    myTextView.setText(finalResult);
+//    System.out.println(finalResult);
+//    break;
+//    case "+":
+//    tempValue = tempValue + calcNumbersArray[p];
+//    finalResult = String.valueOf(df.format(tempValue));
+//    myTextView.setText(finalResult);
+//    break;
+//    default:
+//    break;
+//    }
+//    }
+//    }
+//    System.out.println("Ending for math statement");
+//    }
+//    
+//    equalsPressed = true;
+//    if (calcStringNumberEntries[i] != null) {
+//    System.out.println(df.format(tempValue));
+//    }
+//    System.out.println("Finished math computation.");
+//    
+//    calcStringNumberEntries = null;
+//    calcStringNumberEntries = new String[100];
+//    calcStringOperatorsArray = null;
+//    calcStringOperatorsArray = new String[100];
+//    calcNumbersArray = null;
+//    calcNumbersArray = new Double[100];
+//    i = 0;
+//    if (calcStringNumberEntries != null) {
+//    calcStringNumberEntries[i] = String.valueOf(df.format(tempValue));
+//    System.out.println(calcStringNumberEntries[i]);
+//    }
+//    }
+//    });
+//}
     
 }
 
