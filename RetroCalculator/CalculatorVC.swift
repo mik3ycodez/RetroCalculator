@@ -14,6 +14,18 @@ class CalculatorVC: UIViewController {
     var btnSound: AVAudioPlayer!
     @IBOutlet weak var outputLbl: UILabel!
     
+    //Storage Arrays
+    var calcStringNumberEntries = [String]() //Stores user entries to allow for textView display
+    var calcStringOperatorsArray = [String]() //Stores operators to initialize math of ints
+    var calcNumbersArray = [Double]() //Stores the int value of the string array
+    
+    //Variables
+    var i = 0 //Array counter
+    var tempValue = 0.00 //Final calculation total after math is completed
+    var equalsPressed = false
+    var arrayNonNullValue = 0
+    var arraysAreEven = false
+    
     
     enum Operation: String {
         case Divide = "/"
@@ -34,7 +46,6 @@ class CalculatorVC: UIViewController {
         super.viewDidLoad()
         
         let path = Bundle.main.path(forResource: "btn", ofType: "wav")
-        //let soundURL = URL(fileURLWithPath: path!)
         let soundURL = URL(fileURLWithPath: path!)
         
         do {
@@ -44,7 +55,7 @@ class CalculatorVC: UIViewController {
             print(err.debugDescription)
         }
         
-        outputLbl.text = "0.0"
+        outputLbl.text = "0"
     }
     
     @IBAction func numberPressed(_ sender: UIButton) {
@@ -127,10 +138,7 @@ class CalculatorVC: UIViewController {
 }
 
 /*
- 
- 
- public class MainActivity extends AppCompatActivity {
- 
+
  //Storage Arrays
  String[] calcStringNumberEntries = new String[100]; //Stores user entries to allow for textView display
  String[] calcStringOperatorsArray = new String[100]; //Stores operators to initialize math of ints
@@ -147,46 +155,6 @@ class CalculatorVC: UIViewController {
  protected void onCreate(Bundle savedInstanceState) {
  super.onCreate(savedInstanceState);
  setContentView(R.layout.activity_main);
- 
- final TextView myTextView = (TextView) findViewById(R.id.calc_result);
- Button mClearButton;
- Button mSevenButton;
- Button mEightButton;
- Button mNineButton;
- Button mDivideButton;
- Button mFourButton;
- Button mFiveButton;
- Button mSixButton;
- Button mMultiplyButton;
- Button mOneButton;
- Button mTwoButton;
- Button mThreeButton;
- Button mSubtractButton;
- Button mZeroButton;
- Button mDecimalButton;
- Button mAdditionButton;
- Button mEqualsButton;
- 
- //Components in order of GUI top to bottom, left to right
- mClearButton = (Button) findViewById(R.id.clear_button);
- mSevenButton = (Button) findViewById(R.id.seven_button);
- mEightButton = (Button) findViewById(R.id.eight_button);
- mNineButton = (Button) findViewById(R.id.nine_button);
- mDivideButton = (Button) findViewById(R.id.divide_button);
- mFourButton = (Button) findViewById(R.id.four_button);
- mFiveButton = (Button) findViewById(R.id.five_button);
- mSixButton = (Button) findViewById(R.id.six_button);
- mMultiplyButton = (Button) findViewById(R.id.multiply_button);
- mOneButton = (Button) findViewById(R.id.one_button);
- mTwoButton = (Button) findViewById(R.id.two_button);
- mThreeButton = (Button) findViewById(R.id.three_button);
- mSubtractButton = (Button) findViewById(R.id.subtract_button);
- mZeroButton = (Button) findViewById(R.id.zero_button);
- mDecimalButton = (Button) findViewById(R.id.decimal_button);
- mAdditionButton = (Button) findViewById(R.id.addition_button);
- mEqualsButton = (Button) findViewById(R.id.equals_button);
- 
- myTextView.setText("0");
  
  final DecimalFormat df = new DecimalFormat("#.##");
  df.setRoundingMode(RoundingMode.CEILING);
@@ -602,17 +570,4 @@ class CalculatorVC: UIViewController {
  }
  
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
