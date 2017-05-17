@@ -40,8 +40,17 @@ class CalculatorVC: UIViewController {
         } catch let err as NSError {
             print(err.debugDescription)
         }
-        
-        outputLbl.text = "0"
+        calcStringNumberEntries = [nil]
+        calcStringOperatorsArray = [nil]
+        calcDoubleNumbersArray = [nil]
+        i = 0
+        p = 0
+        tempValue = nil
+        finalResult = ""
+        equalsPressed = false
+        arrayNonNullValue = 0
+        arraysAreEven = false
+        outputLbl.text = "0.0"
     }
     
     func playSound() {
@@ -53,9 +62,9 @@ class CalculatorVC: UIViewController {
     
     @IBAction func onClearPressed(_ sender: UIButton) {
         playSound()
-        calcStringNumberEntries = []
-        calcStringOperatorsArray = []
-        calcDoubleNumbersArray = []
+        calcStringNumberEntries = [nil]
+        calcStringOperatorsArray = [nil]
+        calcDoubleNumbersArray = [nil]
         i = 0
         p = 0
         tempValue = nil
@@ -70,13 +79,13 @@ class CalculatorVC: UIViewController {
         playSound()
         
         if equalsPressed {
-            calcStringNumberEntries[i] = "\(sender.tag)"
+            calcStringNumberEntries = ["\(sender.tag)"]
             equalsPressed = false
         } else {
             if calcStringNumberEntries[i] != nil {
-                calcStringNumberEntries[i] = "\(sender.tag)"
-            } else {
                 calcStringNumberEntries[i] = calcStringNumberEntries[i]! + "\(sender.tag)"
+            } else {
+                calcStringNumberEntries = ["\(sender.tag)"]
             }
         }
         outputLbl.text = calcStringNumberEntries[i]
@@ -86,12 +95,18 @@ class CalculatorVC: UIViewController {
     @IBAction func operatorPressed(_ sender: UIButton) {
         playSound()
         
+        if calcStringOperatorsArray[i] == nil {
+            calcStringOperatorsArray = ["\(String(describing: sender.title(for: .normal)))"]
+            i = i + 1
+        }
+        
         calculateArrayNonNil()
+        
         if !arraysAreEven {
             calcStringOperatorsArray[i] = "\(String(describing: sender.title(for: .normal)))"
             i = i + 1
-            equalsPressed = false
         }
+        equalsPressed = false
     }
     
     @IBAction func decimalPressed(_ sender: UIButton) {
@@ -165,7 +180,7 @@ class CalculatorVC: UIViewController {
         p = 0
         tempValue = nil
         finalResult = ""
-        equalsPressed = false
+        equalsPressed = true
         arrayNonNullValue = 0
         arraysAreEven = false
         outputLbl.text = "0.0"
