@@ -124,11 +124,11 @@ class CalculatorVC: UIViewController {
                 if (p == calcStringOperatorsArray.count) {
                     break
                 }
-                if calcStringOperatorsArray.count >= 1 {
+                if calcStringOperatorsArray[i] != nil {
                     switch calcStringOperatorsArray[i] {
                     case "/"?:
                         if calcDoubleNumbersArray[p] == 0 {
-                            //Divid By Zero Message
+                            //Learn how to push an alert with message "Divide By Zero"
                             outputLbl.text = "Div by 0"
                         } else {
                             tempValue = tempValue! / calcDoubleNumbersArray[p]!
