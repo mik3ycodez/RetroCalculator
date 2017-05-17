@@ -15,9 +15,9 @@ class CalculatorVC: UIViewController {
     @IBOutlet weak var outputLbl: UILabel!
     
     //Storage Arrays
-    var calcStringNumberEntries = [String]() //Stores user entries to allow for textView display
-    var calcStringOperatorsArray = [String]() //Stores operators for math operation
-    var calcDoubleNumbersArray = [Double]() //Stores the double value of the string array
+    var calcStringNumberEntries = [String?]() //Stores user entries to allow for textView display
+    var calcStringOperatorsArray = [String?]() //Stores operators for math operation
+    var calcDoubleNumbersArray = [Double?]() //Stores the double value of the string array
     
     //Variables
     var i = 0 //Array counter
@@ -56,8 +56,14 @@ class CalculatorVC: UIViewController {
         calcStringNumberEntries = []
         calcStringOperatorsArray = []
         calcDoubleNumbersArray = []
-        outputLbl.text = "0.0"
         i = 0
+        p = 0
+        tempValue = nil
+        finalResult = ""
+        equalsPressed = false
+        arrayNonNullValue = 0
+        arraysAreEven = false
+        outputLbl.text = "0.0"
     }
     
     @IBAction func numberPressed(_ sender: UIButton) {
@@ -67,10 +73,10 @@ class CalculatorVC: UIViewController {
             calcStringNumberEntries[i] = "\(sender.tag)"
             equalsPressed = false
         } else {
-            if i < calcStringNumberEntries.count {
+            if calcStringNumberEntries[i] != nil {
                 calcStringNumberEntries[i] = "\(sender.tag)"
             } else {
-                calcStringNumberEntries[i] = calcStringNumberEntries[i] + "\(sender.tag)"
+                calcStringNumberEntries[i] = calcStringNumberEntries[i]! + "\(sender.tag)"
             }
         }
         outputLbl.text = calcStringNumberEntries[i]
@@ -78,9 +84,10 @@ class CalculatorVC: UIViewController {
     }
     
     @IBAction func operatorPressed(_ sender: UIButton) {
+        playSound()
+        
         calculateArrayNonNil()
         if !arraysAreEven {
-            //add case to pull tag
             calcStringOperatorsArray[i] = "\(String(describing: sender.title(for: .normal)))"
             i = i + 1
             equalsPressed = false
@@ -88,30 +95,28 @@ class CalculatorVC: UIViewController {
     }
     
     @IBAction func decimalPressed(_ sender: UIButton) {
-        //Boolean variable that checks index if it contains a decimal
-        //If false add "."
-        //If true ignore
+        playSound()
         
         var testArrayElementForDecimal = ""
-        testArrayElementForDecimal = calcStringNumberEntries[i]
+        testArrayElementForDecimal = calcStringNumberEntries[i]!
         
-        if i < calcStringNumberEntries.count { calcStringNumberEntries[i] = "0." }
+        if calcStringNumberEntries[i] != nil { calcStringNumberEntries[i] = "0." }
         else if !testArrayElementForDecimal.contains(".") { calcStringNumberEntries[i] = "0." }
         else if equalsPressed { calcStringNumberEntries[i] = "0." }
-        else { calcStringNumberEntries[i] = calcStringNumberEntries[i] + "." }
+        else { calcStringNumberEntries[i] = calcStringNumberEntries[i]! + "." }
         equalsPressed = false
         outputLbl.text = calcStringNumberEntries[i]
     }
     
     @IBAction func onEqualPressed(_ sender: UIButton) {
+        playSound()
+        
         i = 0
         p = 0
+        calcDoubleNumbersArray = calcStringNumberEntries.map{ NSString(string: $0!).doubleValue }
         
-        //copy string numbers to double numbers
-        calcDoubleNumbersArray = calcStringNumberEntries.map{ NSString(string: $0).doubleValue }
-        
-        if calcDoubleNumbersArray.count >= 1 { tempValue = calcDoubleNumbersArray[0] }
-        
+        if calcDoubleNumbersArray[i] != nil { tempValue = calcDoubleNumbersArray[i] }
+
         if tempValue != nil {
             
             for _ in calcStringOperatorsArray {
@@ -121,28 +126,28 @@ class CalculatorVC: UIViewController {
                 }
                 if calcStringOperatorsArray.count >= 1 {
                     switch calcStringOperatorsArray[i] {
-                    case "/":
+                    case "/"?:
                         if calcDoubleNumbersArray[p] == 0 {
                             //Divid By Zero Message
                             outputLbl.text = "Div by 0"
                         } else {
-                            tempValue = tempValue! / calcDoubleNumbersArray[p]
+                            tempValue = tempValue! / calcDoubleNumbersArray[p]!
                             finalResult = String(format: "%.03", tempValue!)
                             outputLbl.text = finalResult
                         }
                         break
-                    case "*":
-                        tempValue = tempValue! * calcDoubleNumbersArray[p]
+                    case "*"?:
+                        tempValue = tempValue! * calcDoubleNumbersArray[p]!
                         finalResult = String(format: "%.03", tempValue!)
                         outputLbl.text = finalResult
                         break
-                    case "-":
-                        tempValue = tempValue! - calcDoubleNumbersArray[p]
+                    case "-"?:
+                        tempValue = tempValue! - calcDoubleNumbersArray[p]!
                         finalResult = String(format: "%.03", tempValue!)
                         outputLbl.text = finalResult
                         break
-                    case "+":
-                        tempValue = tempValue! + calcDoubleNumbersArray[p]
+                    case "+"?:
+                        tempValue = tempValue! + calcDoubleNumbersArray[p]!
                         finalResult = String(format: "%.03", tempValue!)
                         outputLbl.text = finalResult
                         break
@@ -153,13 +158,17 @@ class CalculatorVC: UIViewController {
             }
         }
         
-        equalsPressed = true
         calcStringNumberEntries = []
         calcStringOperatorsArray = []
         calcDoubleNumbersArray = []
-        
         i = 0
         p = 0
+        tempValue = nil
+        finalResult = ""
+        equalsPressed = false
+        arrayNonNullValue = 0
+        arraysAreEven = false
+        outputLbl.text = "0.0"
     }
     
     @discardableResult func calculateArrayNonNil() -> Bool {
@@ -176,6 +185,8 @@ class CalculatorVC: UIViewController {
 }
 
 /*
+
+ *** JAVA Code from working functional calculator that I built ***
 
  //Storage Arrays
  String[] calcStringNumberEntries = new String[100]; //Stores user entries to allow for textView display
@@ -611,7 +622,8 @@ class CalculatorVC: UIViewController {
 
 
 /*
- ***Original Code***
+ 
+ *** Original Code from DevSlopes Mark Price lesson ***
  
  //    enum Operation: String {
  //        case Divide = "/"
